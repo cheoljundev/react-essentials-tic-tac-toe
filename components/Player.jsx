@@ -4,7 +4,9 @@ export default function Player({name, symbol}) {
     const [isEditing, setIsEditing] = useState(false);
 
     function handleEditClick() {
-        setIsEditing(!isEditing);
+        // 이전 값을 변경 할 경우 함수를 반환하여 변경하는 것이 권고됨.
+        // 이렇게 해야 항상 최신 state 값을 가지고 있음.
+        setIsEditing(editing => !editing);
     }
 
     let playerName = <span className="player-name">{name}</span>;
