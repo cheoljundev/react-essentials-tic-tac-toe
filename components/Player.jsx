@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-export default function Player({initialName, symbol, isActive}) {
+export default function Player({initialName, symbol, isActive, onChangeName}) {
     const [playerName, setPlayerName] = useState(initialName)
     const [isEditing, setIsEditing] = useState(false);
 
@@ -8,6 +8,10 @@ export default function Player({initialName, symbol, isActive}) {
         // 이전 값을 변경 할 경우 함수를 반환하여 변경하는 것이 권고됨.
         // 이렇게 해야 항상 최신 state 값을 가지고 있음.
         setIsEditing(editing => !editing);
+
+        if (isEditing) {
+            onChangeName(symbol, playerName);
+        }
     }
 
     let editablePlayerName = <span className="player-name">{playerName}</span>;
